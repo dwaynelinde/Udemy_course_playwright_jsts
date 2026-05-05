@@ -11,7 +11,7 @@ test("Browser Context Playwright test", async ({browser})=>
 
 }); 
 
-test("Page Playwright test", async ({page})=>
+test.only("Page Playwright test", async ({page})=>
 {
 
     // Tests run by default in headless mode. 
