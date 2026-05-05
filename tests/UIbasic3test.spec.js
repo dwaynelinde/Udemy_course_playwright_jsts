@@ -14,6 +14,8 @@ test("Browser Context Playwright test", async ({browser})=>
 test("Page Playwright test", async ({page})=>
 {
 
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
+    // Tests run by default in headless mode. 
+
+    await page.goto("https://www.google.com"); 
 
 }); 
