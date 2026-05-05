@@ -38,15 +38,14 @@ export default defineConfig({
 
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://127.0.0.1:3000',
+    // baseURL: 'http://127.0.0.1:3000',
     
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    // trace: 'on-first-retry',
-    // LinkedIn class var
-    trace: 'on',
+    
+    trace: 'on-first-retry',
     actionTimeout: 0,
-    ignoreHTTPSErrors: true,
+    // ignoreHTTPSErrors: true,
     // video: "retain-on-failure",
     // screenshot: "only-on-failure",
     // headless: true,
@@ -57,24 +56,19 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      // name: "setup",
-    },
+
     {
       name: 'chromium',
-      // dependencies: ["setup"],
-      use: { ...devices['Desktop Chrome'], permissions: ["clipboard-read"] },
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      // dependencies: ["setup"],
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
-      // dependencies: ["setup"],
       use: { ...devices['Desktop Safari'] },
     },
 
