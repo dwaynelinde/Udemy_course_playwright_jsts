@@ -14,9 +14,14 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   // Timeout is 30 milliseconds. LinkedIn class var
-  timeout: 30_000,
+  
+  timeout: 30 * 1000, 
+  expect: {
+    timeout: 5000
+  }, 
+
   // Global Timeout: 10 mins. (10 * 60 * 1000 = 10 mins). LinkedIn class var
-  globalTimeout: 10 * 60 * 1000,
+  // globalTimeout: 10 * 60 * 1000,
   // Location of test directory
   testDir: './tests',
   /* Run tests in files in parallel */
