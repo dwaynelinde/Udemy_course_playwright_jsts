@@ -14,7 +14,7 @@ test("Browser Context Playwright test", async ({browser})=>
 test.only("Page Playwright test", async ({page})=>
 {
 
-    // Tests run by default in headless mode. 
+    // Tests run by default in headless mode. Headed Mode must be summoned. 
 
     await page.goto("https://www.google.com"); 
 
