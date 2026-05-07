@@ -24,7 +24,7 @@ testDir: './tests',
 
   use: {
     
-    browserName: 'chromium'
+    browserName: 'firefox'
 
   },
 });
