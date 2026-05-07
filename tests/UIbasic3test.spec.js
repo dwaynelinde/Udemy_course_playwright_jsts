@@ -9,6 +9,16 @@ test("Browser Context Playwright test", async ({browser})=>
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
     console.log(await page.title()); 
 
+    // CSS selector - can write tests for these, to find an edit box.
+    // fill - new method to enter text into a textbox.
+    await page.locator('#username').fill("rahulshetty"); 
+    await page.locator("[type='password']").fill("learning"); 
+    
+    // Press the button. 
+    await page.locator("#signInBtn").click(); 
+
+
+
 }); 
 
 test("Page Playwright test", async ({page})=>

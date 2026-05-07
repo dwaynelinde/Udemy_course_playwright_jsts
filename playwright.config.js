@@ -13,11 +13,11 @@ testDir: './tests',
 
 
   // This timeout is for every step of the test. Default is 30 secs. 
-  timeout: 40 * 1000, 
+  timeout: 30 * 1000, 
 
   // This timeout is for assertion validation. Default is 30 secs. 
   expect: { 
-    timeout: 40 * 1000
+    timeout: 5000
   }, 
 
   reporter: 'html', 
