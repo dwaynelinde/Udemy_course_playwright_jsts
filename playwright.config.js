@@ -24,7 +24,9 @@ testDir: './tests',
 
   use: {
     
-    browserName: 'firefox'
+    // 'webkit' = Safari
+    browserName: 'webkit',
+    headless: false
 
   },
 });
