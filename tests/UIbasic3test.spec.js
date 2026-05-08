@@ -17,6 +17,9 @@ test("Browser Context Playwright test", async ({browser})=>
     // Press the button. 
     await page.locator("#signInBtn").click(); 
 
+    // wait for the error message. webdriverwait.
+    console.log (await page.locator("[style*='block']").textContent());
+
 
 
 }); 
