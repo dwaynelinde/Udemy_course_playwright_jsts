@@ -4,23 +4,37 @@ const { test, expect } = require('@playwright/test');
 
 test("Browser Context Playwright test", async ({browser})=>
 {
+    // Constants. 
     const context = await browser.newContext();
     const page = await context.newPage(); 
+
+    // must initialize page first. 
+    const userName = page.locator('#username'); 
+    const password = page.locator("[type='password']"); 
+    const signIn = page.locator("#signInBtn"); 
+
+
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
     console.log(await page.title()); 
 
     // CSS selector - can write tests for these, to find an edit box.
     // fill - new method to enter text into a textbox.
-    await page.locator('#username').fill("rahulshetty"); 
-    await page.locator("[type='password']").fill("learning"); 
+    await userName.fill("rahulshetty"); 
+    await password.fill("Learning@830$3mK2"); 
     
     // Press the button. 
-    await page.locator("#signInBtn").click(); 
+    await signIn.click(); 
 
     // wait for the error message. webdriverwait.
     console.log (await page.locator("[style*='block']").textContent());
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect');
 
+    await userName.fill(""); 
+    await userName.fill("rahulshettyacademy"); 
+    await signIn.click(); 
 
+    console.log(await page.locator(".card-body a").first().textContent());
+    console.log(await page.locator(".card-body a").nth(1).textContent()); 
 
 }); 
 
