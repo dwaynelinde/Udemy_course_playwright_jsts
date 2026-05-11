@@ -33,7 +33,10 @@ test("Browser Context Playwright test", async ({browser})=>
     await userName.fill("rahulshettyacademy"); 
     await signIn.click(); 
 
+    // first value
     console.log(await page.locator(".card-body a").first().textContent());
+
+    // second value
     console.log(await page.locator(".card-body a").nth(1).textContent()); 
 
 }); 
