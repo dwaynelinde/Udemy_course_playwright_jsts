@@ -12,6 +12,7 @@ test("Browser Context Playwright test", async ({browser})=>
     const userName = page.locator('#username'); 
     const password = page.locator("[type='password']"); 
     const signIn = page.locator("#signInBtn"); 
+    const cardTitles = page.locator(".card-body a"); 
 
 
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
@@ -34,10 +35,15 @@ test("Browser Context Playwright test", async ({browser})=>
     await signIn.click(); 
 
     // first value
-    console.log(await page.locator(".card-body a").first().textContent());
+    console.log(await cardTitles.first().textContent());
 
     // second value
-    console.log(await page.locator(".card-body a").nth(1).textContent()); 
+    console.log(await cardTitles.nth(1).textContent()); 
+
+    // Grabbing all of the card values with one method. 
+
+    const allTitles = await cardTitles.allTextContents(); 
+    console.log(allTitles); 
 
 }); 
 
