@@ -12,29 +12,36 @@ test("Browser Chapter 4 Homework", async ({browser})=>{
 // const variables to use in tests
 
 // Initialize the browser and page first. 
-// Page: website: https://rahulshettyacademy.com/client/#/auth/login
+// Login Page: website: https://rahulshettyacademy.com/client/#/auth/login
+// Register Page: website: https://rahulshettyacademy.com/client/#/auth/register
+// page: https://rahulshettyacademy.com/client/#/auth/
 
-const browserContext = await browser.newContext(); 
-const browserPage = await browser.newPage(); 
+const context = await browser.newContext(); 
+const pageRegister = await browser.newPage(); 
+const pageLogin = await browser.newPage(); 
 
 // Now, consts for form variables. 
 
-const firstName = (); 
-const lastName = (); 
-const email = (); 
-const phoneNumber = (); 
-const occupation = (); 
-const gender = (); 
-const password = (); 
-const eighteenOrOlder = (); 
+const firstName = pageRegister.locator(); 
+const lastName = pageRegister.locator(); 
+const email = pageRegister.locator(); 
+const phoneNumber = pageRegister.locator(); 
+const occupation = pageRegister.locator(); 
+const gender = pageRegister.locator(); 
+const password = pageRegister.locator(); 
+const eighteenOrOlder = pageRegister.locator(); 
 
+
+// going to website: https://rahulshettyacademy.com/client/#/auth/register
+
+await pageRegister.goto("https://rahulshettyacademy.com/client/#/auth/register");
+console.log(await pageRegister.title());
 
 
 });  
 
 
 
-// going to website: https://rahulshettyacademy.com/client/#/auth/login
 
 // making a new account
 
