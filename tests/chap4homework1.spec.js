@@ -26,14 +26,23 @@ const firstName = pageRegister.locator('#firstName');
 const lastName = pageRegister.locator('#lastName'); 
 const email = pageRegister.locator('#userEmail'); 
 const phoneNumber = pageRegister.locator('#userMobile'); 
-const occupation = pageRegister.locator(getByRole('combobox')); 
-const gender = pageRegister.locator(getByText('Gender Male Female')); 
+
+// error: 
+// const occupation = pageRegister.locator(getByRole('combobox')); 
+
+// error:
+// const gender = pageRegister.locator(getByText('Gender Male Female')); 
+
 const password = pageRegister.locator('#userPassword'); 
-const conformPassword = pageRegister.locator('#confirmPassword')
-const eighteenOrOlder = pageRegister.locator(getByRole('checkbox')); 
+const confirmPassword = pageRegister.locator('#confirmPassword')
+
+// error:
+// const eighteenOrOlder = pageRegister.locator(getByRole('checkbox')); 
 
 
 // going to website: https://rahulshettyacademy.com/client/#/auth/register
+// what fields are required: 
+
 
 await pageRegister.goto("https://rahulshettyacademy.com/client/#/auth/register");
 console.log(await pageRegister.title());
