@@ -36,12 +36,13 @@ test("Browser Chapter 4 Homework", async ({browser})=>{
     const password = pageRegister.locator('#userPassword'); 
     const confirmPassword = pageRegister.locator('#confirmPassword')
 
-    // error:
-    // const eighteenOrOlder = pageRegister.locator(getByRole('checkbox')); 
+    // error but REQUIRED
+    const eighteenOrOlder = pageRegister.locator('#checkbox'); 
+    const registerBtn = pageRegister.locator('#register'); 
 
 
     // going to website: https://rahulshettyacademy.com/client/#/auth/register
-    // what fields are required: 
+    
 
 
     await pageRegister.goto("https://rahulshettyacademy.com/client/#/auth/register");
@@ -52,10 +53,17 @@ test("Browser Chapter 4 Homework", async ({browser})=>{
     await firstName.fill("testfirst1"); 
     await lastName.fill("testlast1"); 
     await email.fill("test@example.org");
-    await phoneNumber.fill("1-212-555-1212"); 
+    await phoneNumber.fill("2125551212"); 
     await password.fill("testpass1!"); 
     await confirmPassword.fill("testpass1!"); 
 
+    // Check the 18 or older checkbox. 
+    // THIS LINE DOESN'T WORK. DEBUG FROM HERE.
+    await eighteenOrOlder.getByRole('checkbox').check(); 
+
+    // click the 'register' button
+
+    await registerBtn.click(); 
 
 });  
 
