@@ -59,7 +59,7 @@ test("Browser Chapter 4 Homework", async ({browser})=>{
 
     // Check the 18 or older checkbox. 
     // THIS LINE DOESN'T WORK. DEBUG FROM HERE.
-    await eighteenOrOlder.getByRole('checkbox').check(); 
+    await eighteenOrOlder.getByText('I am 18 year or Older').check(); 
 
     // click the 'register' button
 
