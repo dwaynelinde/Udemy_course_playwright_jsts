@@ -16,8 +16,9 @@ test("Practice General Elements on a Website", async ({browser})=>
     console.log(await page.title()); 
 
     // Now, try to click the form. 
+    
+    await page.getByLabel('Checkbox 1').check();
 
-    await page.locator('div.container').locator('div').nth(3).check(); 
 
 
 
