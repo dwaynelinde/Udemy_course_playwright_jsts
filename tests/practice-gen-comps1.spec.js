@@ -17,6 +17,12 @@ test("Practice General Elements on a Website", async ({browser})=>
 
     // Now, try to click the form. 
 
+    await page.locator('div.container').locator('div').nth(3).check(); 
+
+
+
+
+
 
 }); 
 
