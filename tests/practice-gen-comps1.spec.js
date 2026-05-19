@@ -17,10 +17,9 @@ test("Practice General Elements on a Website", async ({browser})=>
 
     // Now, try to click the form. 
     
-    // await page.getByLabel('Checkbox 1').check();
-
+    // THIS WORKS!  
     expect(page.getByLabel('Checkbox 1')).toBeChecked;
-    
+
 
 
 
