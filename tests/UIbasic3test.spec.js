@@ -64,10 +64,24 @@ test("Page Playwright test", async ({page})=>
 }); 
 
 
-test('UI controls', async({page})=> 
+test.only('UI controls', async({page})=> 
 {
-    await page.goto("");
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
 
+    const userName = page.locator('#username'); 
+    // const password = page.locator("[type='password']"); 
+    const signIn = page.locator("#signInBtn"); 
+
+    // The dropdown: 
+    const dropdown = page.locator("select.form-control"); 
+
+    // Select an option from the dropdown: 
+
+    await dropdown.selectOption("consult"); 
+
+    // pause the execution to see the result
+
+    await page.pause(); 
 
 }); 
