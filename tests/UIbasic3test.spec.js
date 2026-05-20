@@ -80,8 +80,32 @@ test.only('UI controls', async({page})=>
 
     await dropdown.selectOption("consult"); 
 
-    // pause the execution to see the result
+    // pause the execution to see the result; also brings up the Inspector. 
+    // await page.pause(); 
 
-    await page.pause(); 
+
+    // select radio button - selects the last one. 
+    await page.locator(".radiotextsty").last().click(); 
+    // click on the web-based popup modal that appears. 
+    await page.locator("#okayBtn").click(); 
+    // assertion to check if clicked or not. 
+
+    await expect(page.locator(".radiotextsty").last()).toBeChecked(); 
+    console.log(await page.locator(".radiotextsty").last().isChecked()); 
+
+    // checkboxes! With an assertion. Check. 
+
+    await page.locator("#terms").click(); 
+    await expect(page.locator("#terms")).toBeChecked(); 
+    
+    // Unchecked. Thus, should be Falsy. 
+    await page.locator("#terms").uncheck(); 
+    expect(await page.locator("#terms").isChecked()).toBeFalsy(); 
+
+    // End of 5.23
+
+    // await page.pause(); 
+
+
 
 }); 
