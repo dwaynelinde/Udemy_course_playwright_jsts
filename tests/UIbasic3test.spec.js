@@ -62,3 +62,12 @@ test("Page Playwright test", async ({page})=>
 
 
 }); 
+
+
+test('UI controls', async({page})=> 
+{
+    await page.goto("");
+    console.log(await page.title());
+
+
+}); 
