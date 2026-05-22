@@ -76,6 +76,9 @@ test.only('UI controls', async({page})=>
     // The dropdown: 
     const dropdown = page.locator("select.form-control"); 
 
+    // The document link:
+    const documentLink = page.locator("[href*='documents-request']"); 
+
     // Select an option from the dropdown: 
 
     await dropdown.selectOption("consult"); 
@@ -102,9 +105,8 @@ test.only('UI controls', async({page})=>
     await page.locator("#terms").uncheck(); 
     expect(await page.locator("#terms").isChecked()).toBeFalsy(); 
 
-    // End of 5.23
-
-    // await page.pause(); 
+    // Check for the blinking text. 
+    await expect(documentLink).toHaveAttribute("class", "blinkingText"); 
 
 
 
