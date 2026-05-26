@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test'); 
+const { text } = require('stream/consumers');
 
 // Two different ways to kickstart automation in Playwright. 
 
@@ -123,11 +124,15 @@ test.only('Child Windows Handling', async({browser})=>
     const documentLink = page.locator("[href*='documents-request']"); 
     
     
-    Promise.all (
-    
-    [context.waitForEvent('page'),
+    const [newPage] = Promise.all (
+    [
+    context.waitForEvent('page'),
      //listen for new page. Promise pending, rejected, fulfilled
-    documentLink.click()] // new page is opened
-    )
-    
+    documentLink.click(),
+    ])
+     // new page is opened. 
+
+    text = await newPage.locator(".red").textContent(); 
+
+    console.log(); 
 }); 
