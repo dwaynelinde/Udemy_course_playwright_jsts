@@ -117,22 +117,17 @@ test.only('Child Windows Handling', async({browser})=>
 
     const context = await browser.newContext();
     const page = await context.newPage(); 
-
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
-
-// The document link:
     const documentLink = page.locator("[href*='documents-request']"); 
     
-    
-    const [newPage] = Promise.all (
+    const [newPage] = await Promise.all (
     [
     context.waitForEvent('page'),
-     //listen for new page. Promise pending, rejected, fulfilled
     documentLink.click(),
     ])
      // new page is opened. 
 
-    text = await newPage.locator(".red").textContent(); 
+    let text = await newPage.locator(".red").textContent(); 
 
-    console.log(); 
+    console.log(text); 
 }); 
