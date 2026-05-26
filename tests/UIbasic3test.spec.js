@@ -64,7 +64,7 @@ test("Page Playwright test", async ({page})=>
 }); 
 
 
-test.only('UI controls', async({page})=> 
+test('UI controls', async({page})=> 
 {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
@@ -108,6 +108,26 @@ test.only('UI controls', async({page})=>
     // Check for the blinking text. 
     await expect(documentLink).toHaveAttribute("class", "blinkingText"); 
 
+}); 
 
 
+test.only('Child Windows Handling', async({browser})=> 
+{
+
+    const context = await browser.newContext();
+    const page = await context.newPage(); 
+
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+
+// The document link:
+    const documentLink = page.locator("[href*='documents-request']"); 
+    
+    
+    Promise.all (
+    
+    [context.waitForEvent('page'),
+     //listen for new page. Promise pending, rejected, fulfilled
+    documentLink.click()] // new page is opened
+    )
+    
 }); 
