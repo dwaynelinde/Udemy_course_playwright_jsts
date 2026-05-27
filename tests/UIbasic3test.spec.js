@@ -117,6 +117,7 @@ test.only('Child Windows Handling', async({browser})=>
 
     const context = await browser.newContext();
     const page = await context.newPage(); 
+    const userName = page.locator('#username'); 
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const documentLink = page.locator("[href*='documents-request']"); 
     
@@ -127,7 +128,15 @@ test.only('Child Windows Handling', async({browser})=>
     ])
      // new page is opened. 
 
-    let text = await newPage.locator(".red").textContent(); 
+    const text = await newPage.locator(".red").textContent(); 
+    // split out the email domain from the string. 
+    const arrayText = text.split("@")
+    const domain = arrayText[1].split(" ")[0] // rightside text after @
+    console.log(domain); 
 
-    console.log(text); 
+    // put the domain in a text field on the original page. 
+    await page.locator("#username").type(domain); 
+    console.log(await page.locator("#username").inputValue()); 
+
+
 }); 
