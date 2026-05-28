@@ -163,7 +163,13 @@ test.only("Dynamically finding product", async ({browser})=>
     // for loop!
     for(let i = 0; i < count; ++i)
     {
-        await products.nth(i).locator("b").textContent(); 
+         if (await products.nth(i).locator("b").textContent() === productName)
+            {
+                // Add product to cart. 
+                await products.nth(i).locator("text= Add To Cart").click(); 
+                break;     
+
+            }
     }
 
 }); 
