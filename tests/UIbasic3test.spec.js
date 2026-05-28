@@ -3,7 +3,7 @@ const { text } = require('stream/consumers');
 
 // Two different ways to kickstart automation in Playwright. 
 
-test("Browser Context Playwright test", async ({browser})=>
+test.only("Browser Context Playwright test", async ({browser})=>
 {
     // Constants. 
     const context = await browser.newContext();
@@ -112,7 +112,7 @@ test('UI controls', async({page})=>
 }); 
 
 
-test.only('Child Windows Handling', async({browser})=> 
+test('Child Windows Handling', async({browser})=> 
 {
 
     const context = await browser.newContext();
