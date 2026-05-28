@@ -5,8 +5,6 @@ const { text } = require('stream/consumers');
 
 test("Browser Context Playwright test", async ({browser})=>
 {
-
-    // Start of Lesson 30.
     // Constants. 
     const context = await browser.newContext();
     const page = await context.newPage(); 
@@ -142,9 +140,15 @@ test('Child Windows Handling', async({browser})=>
 
 test.only("Dynamically finding product", async ({browser})=>
 {
-
+    
     // Start of Lesson 30.
     // Constants. 
+    const productName = 'Zara Coat 4'; 
+
+    const context = await browser.newContext();
+    const page = await context.newPage(); 
+    const products = page.locator(".card-body"); 
+    
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
     await page.locator("#userEmail").fill("anshika@gmail.com"); 
     await page.locator("#userPassword").type("Iamking@000"); 
@@ -152,6 +156,15 @@ test.only("Dynamically finding product", async ({browser})=>
     await page.waitForLoadState('networkidle');  // 1:12 out of 15:00
     const titles = await page.locator(".card-body b").allTextContents(); 
     console.log(titles); 
+
+    // Iterate through all of the items. 
+    const count = await products.count(); 
+
+    // for loop!
+    for(let i = 0; i < count; ++i)
+    {
+        await products.nth(i).locator("b").textContent(); 
+    }
 
 }); 
 
