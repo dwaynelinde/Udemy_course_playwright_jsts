@@ -3,8 +3,10 @@ const { text } = require('stream/consumers');
 
 // Two different ways to kickstart automation in Playwright. 
 
-test.only("Browser Context Playwright test", async ({browser})=>
+test("Browser Context Playwright test", async ({browser})=>
 {
+
+    // Start of Lesson 30.
     // Constants. 
     const context = await browser.newContext();
     const page = await context.newPage(); 
@@ -59,8 +61,6 @@ test("Page Playwright test", async ({page})=>
 
     console.log(await page.title()); 
     await expect(page).toHaveTitle("Google"); 
-
-
 
 }); 
 
@@ -138,5 +138,18 @@ test('Child Windows Handling', async({browser})=>
     await page.locator("#username").type(domain); 
     console.log(await page.locator("#username").inputValue()); 
 
+});
+
+test.only("Dynamically finding product", async ({browser})=>
+{
+
+    // Start of Lesson 30.
+    // Constants. 
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
+    await page.locator("#userEmail").fill("anshika@gmail.com"); 
+    await page.locator("#userPassword").type("Iamking@000"); 
+    await page.locator("[value='Login']").click();
+    await page.waitForLoadState('networkidle');  // 1:12 out of 15:00
 
 }); 
+
