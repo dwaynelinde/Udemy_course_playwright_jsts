@@ -150,6 +150,8 @@ test.only("Dynamically finding product", async ({browser})=>
     await page.locator("#userPassword").type("Iamking@000"); 
     await page.locator("[value='Login']").click();
     await page.waitForLoadState('networkidle');  // 1:12 out of 15:00
+    const titles = await page.locator(".card-body b").allTextContents(); 
+    console.log(titles); 
 
 }); 
 
