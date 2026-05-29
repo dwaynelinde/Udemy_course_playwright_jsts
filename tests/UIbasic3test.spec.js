@@ -138,22 +138,23 @@ test('Child Windows Handling', async({browser})=>
 
 });
 
-test.only("Dynamically finding product", async ({browser})=>
+test.only("Dynamically finding product", async ({ page })=>
 {
     
     // Start of Lesson 30.
     // Constants. 
-    const productName = 'Zara Coat 4'; 
+    const productName = 'ZARA COAT 3'; 
 
-    const context = await browser.newContext();
-    const page = await context.newPage(); 
+    // const context = await browser.newContext();
+    // const page = await context.newPage(); 
     const products = page.locator(".card-body"); 
     
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
-    await page.locator("#userEmail").fill("anshika@gmail.com"); 
+    await page.goto("https://rahulshettyacademy.com/client"); 
+    await page.locator("#userEmail").fill("anshika@gmail.com");     
     await page.locator("#userPassword").type("Iamking@000"); 
     await page.locator("[value='Login']").click();
-    await page.waitForLoadState('networkidle');  // 1:12 out of 15:00
+    await page.waitForLoadState('networkidle'); 
+    await page.locator(".card-body b").first().waitFor(); 
     const titles = await page.locator(".card-body b").allTextContents(); 
     console.log(titles); 
 
@@ -171,6 +172,6 @@ test.only("Dynamically finding product", async ({browser})=>
 
             }
     }
-
+    await page.pause(); 
 }); 
 
