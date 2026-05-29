@@ -172,6 +172,8 @@ test.only("Dynamically finding product", async ({ page })=>
 
             }
     }
-    await page.pause(); 
+
+    await page.locator("[routerlink*='cart']").click(); // 1/4th way through lesson 31
+
 }); 
 
