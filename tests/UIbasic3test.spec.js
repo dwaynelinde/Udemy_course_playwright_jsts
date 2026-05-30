@@ -173,7 +173,13 @@ test.only("Dynamically finding product", async ({ page })=>
             }
     }
 
-    await page.locator("[routerlink*='cart']").click(); // 1/4th way through lesson 31
+    await page.locator("[routerlink*='cart']").click(); 
+
+
+    await page.locator("div li").first().waitFor(); 
+    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible(); 
+    expect(bool).toBeTruthy(); 
+    // start of Lesson 32. 
 
 }); 
 
