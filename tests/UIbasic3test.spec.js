@@ -179,7 +179,29 @@ test.only("Dynamically finding product", async ({ page })=>
     await page.locator("div li").first().waitFor(); 
     const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible(); 
     expect(bool).toBeTruthy(); 
-    // start of Lesson 32. 
+    await page.locator("text=Checkout").click(); 
+    await page.locator("[placeholder*='Country']").pressSequentially("ind", {delay:150}); 
+    const dropdown = page.locator(".ta-results"); 
+    await dropdown.waitFor(); 
+    const dropdownCount = await dropdown.locator("button").count(); 
+
+    // now, iterate through dropdownCount: 
+
+    for (let i = 0; i < dropdownCount; ++i) 
+    {
+        const text = await dropdown.locator("button").nth(i).textContent(); 
+
+        // Text must be exact; it has a space before the 'I'.     
+        if (text === " India") 
+        {
+            await dropdown.locator("button").nth(i).click(); 
+            break; 
+        }
+    }
+
+    await page.pause(); 
+
+    // Start of Lesson 34. 
 
 }); 
 
