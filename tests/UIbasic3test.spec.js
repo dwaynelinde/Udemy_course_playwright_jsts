@@ -223,5 +223,7 @@ test.only("Dynamically finding product", async ({ page })=>
    const orderIdDetails = await page.locator(".col-text").textContent();
    expect(orderId.includes(orderIdDetails)).toBeTruthy();
 
+   // start of Lesson 36
+
 }); 
 
