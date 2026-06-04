@@ -15,10 +15,9 @@ test('Playwright Special Locators', async ({ page}) => {
     await page.getByRole("button", { name: 'Submit'}).click(); 
     await page.getByText("Success! The Form has been submitted successfully!.").isVisible(); 
     await page.getByRole("link", {name : "Shop"}).click(); 
+    await page.locator("app-card").filter({ hasText : 'Nokia Edge'}).getByRole("button").click(); 
 
-    // 10:11 on Lesson 39
 
-    // start of Lesson 39. Run in Playwright Testrunner. 
 
 }); 
 
