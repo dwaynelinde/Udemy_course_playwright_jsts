@@ -13,9 +13,9 @@ test('Playwright Special Locators', async ({ page}) => {
     await page.getByLabel("Gender").selectOption("Female"); 
     await page.getByPlaceholder("Password").fill("abc123"); 
     await page.getByRole("button", { name: 'Submit'}).click(); 
+    await page.getByText("Success! The Form has been submitted successfully!.").isVisible(); 
 
-
-    // start of Lesson 39. 
+    // start of Lesson 39. Run in Playwright Testrunner. 
 
 }); 
 
