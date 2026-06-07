@@ -10,11 +10,12 @@ test("Webst Client App Login From Lesson 43 On", async ({ page })=>
     // Art Walk ruled. Now, on to coding. 
 
     const email = "anshika@gmail.com"; 
+    const password = "Iamking@000"; 
     const productName = 'ZARA COAT 3'; 
     const products = page.locator(".card-body");     
     await page.goto("https://rahulshettyacademy.com/client"); 
     await page.getByPlaceholder("email@example.com").fill(email); 
-    await page.getByPlaceholder("enter your password").fill("Iamking@000"); 
+    await page.getByPlaceholder("enter your password").fill(password); 
     await page.getByRole('button', {name: "Login"}).click(); 
     await page.waitForLoadState('networkidle'); 
     await page.locator(".card-body b").first().waitFor(); 
