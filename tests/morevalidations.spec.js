@@ -14,5 +14,18 @@ test("Popup validations", async({page}) =>
     await expect(page.locator('#displayed-text')).toBeVisible(); 
     await page.locator('#hide-textbox').click(); 
     await expect(page.locator("#displayed-text")).toBeHidden(); 
+    await page.pause(); 
+
+    // Handling a Java popup dialog box. 
+    page.on('dialog', dialog => dialog.accept()); 
+    // page.on('dialog', dialog => dialog.dismiss()); 
+
+    await page.locator("#confirmbtn").click();      
+    
+    // Hovers in Playwright. 
+
+    await page.locator("#mousehover").hover(); 
+
+    // end of 51
 
 })
