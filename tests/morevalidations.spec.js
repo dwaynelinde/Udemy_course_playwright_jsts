@@ -14,7 +14,7 @@ test("Popup validations", async({page}) =>
     await expect(page.locator('#displayed-text')).toBeVisible(); 
     await page.locator('#hide-textbox').click(); 
     await expect(page.locator("#displayed-text")).toBeHidden(); 
-    await page.pause(); 
+    // await page.pause(); 
 
     // Handling a Java popup dialog box. 
     page.on('dialog', dialog => dialog.accept()); 
@@ -26,6 +26,17 @@ test("Popup validations", async({page}) =>
 
     await page.locator("#mousehover").hover(); 
 
-    // end of 51
+    // end of lesson 51
+    // start of lesson 52
+
+    // website in iFrame 
+
+    const framesPage = page.frameLocator("#courses-iframe"); 
+    await framesPage.locator("li a[href*='lifetime-access']:visible").click(); 
+    const textCheck = await framesPage.locator(".text h2").textContent(); 
+    console.log(textCheck.split(" ")[1]); 
+
+    // end of lesson 52
+
 
 })
