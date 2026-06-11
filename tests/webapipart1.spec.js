@@ -1,7 +1,31 @@
-const {test, expect} = require('@playwright/test'); 
+const {test, expect, request } = require('@playwright/test'); 
 
 
-test("Dynamically finding product", async ({ page })=>
+test.beforeAll( async()=> 
+
+{
+
+   const apiContext = await request.newContext();
+   
+   apiContext.post(""); 
+   
+   // const apiUtils = new APiUtils(apiContext,loginPayLoad);
+   // response =  await apiUtils.createOrder(orderPayLoad);
+
+}); 
+ 
+// 7:05 out of 15:16
+
+test.beforeEach( ()=> 
+
+{
+
+
+
+
+}); 
+
+test("DClient API logging in", async ({ page })=>
 {
     
     // Start of Lesson 30.
