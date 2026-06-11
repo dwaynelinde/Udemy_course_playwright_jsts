@@ -18,10 +18,12 @@ test.beforeAll( async()=>
     // OK code 200, 201
 
     expect(loginResponse.ok()).toBeTruthy();
-    const loginResponseJson = loginResponse.json(); 
+    const loginResponseJson = await loginResponse.json(); 
     const token = loginResponseJson.token; 
 
     // end of lesson 54. 
+
+    console.log(token); 
 
 }); 
  
