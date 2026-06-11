@@ -131,6 +131,9 @@ test("DClient API logging in", async ({ page })=>
    const orderIdDetails = await page.locator(".col-text").textContent();
    expect(orderId.includes(orderIdDetails)).toBeTruthy();
 
-   // End of Section 6! 
-
 }); 
+
+// Verify if order created is showing in history page. 
+// Precondition - create order - 
+
+// 7:07 out of 9:16 Lesson 56. 
