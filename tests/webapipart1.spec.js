@@ -7,7 +7,7 @@ test.beforeAll( async()=>
 
    const apiContext = await request.newContext();
    
-   apiContext.post(""); 
+   apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login"); 
    
    // const apiUtils = new APiUtils(apiContext,loginPayLoad);
    // response =  await apiUtils.createOrder(orderPayLoad);
