@@ -1,5 +1,6 @@
 const {test, expect, request } = require('@playwright/test'); 
 
+const loginPayload = {userEmail:"anshika@gmail.com",userPassword:"Iamking@000"}; 
 
 test.beforeAll( async()=> 
 
@@ -7,10 +8,20 @@ test.beforeAll( async()=>
 
    const apiContext = await request.newContext();
    
-   apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login"); 
-   
-   // const apiUtils = new APiUtils(apiContext,loginPayLoad);
-   // response =  await apiUtils.createOrder(orderPayLoad);
+   const loginResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login", 
+    
+    {
+        data: loginPayload
+    
+    })
+
+    // OK code 200, 201
+
+    expect(loginResponse.ok()).toBeTruthy();
+    const loginResponseJson = loginResponse.json(); 
+    const token = loginResponseJson.token; 
+
+    // end of lesson 54. 
 
 }); 
  
