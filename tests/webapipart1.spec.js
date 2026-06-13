@@ -36,6 +36,13 @@ test.beforeAll( async()=>
     apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order", 
         {
 
+            data: orderPayload,
+            headers: {
+                        'Authorization':token,
+                        'Content-Type':'application/json'
+                    }, 
+
+                    // 5:20 out of 14:09 Lesson 57
         }
     ); 
 
