@@ -1,5 +1,7 @@
 const {test, expect, request } = require('@playwright/test'); 
 
+const orderPayload = {
+    orders: [{country:"Mexico",productOrderId:"6960eae1c941646b7a8b3ed3"}]}; 
 const loginPayload = {userEmail:"anshika@gmail.com",userPassword:"Iamking@000"}; 
 
 let token; 
@@ -7,9 +9,9 @@ let token;
 test.beforeAll( async()=> 
 
 {
+    // Login API: 
 
    const apiContext = await request.newContext();
-   
    const loginResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login", 
     
     {
@@ -26,6 +28,16 @@ test.beforeAll( async()=>
     // end of lesson 54. 
 
     console.log(token); 
+
+    // end of Lesson 55
+
+    // start of Lesson 56
+
+    apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order", 
+        {
+
+        }
+    ); 
 
 }); 
  
@@ -136,4 +148,4 @@ test("DClient API logging in", async ({ page })=>
 // Verify if order created is showing in history page. 
 // Precondition - create order - 
 
-// 7:07 out of 9:16 Lesson 56. 
+
