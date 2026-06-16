@@ -65,7 +65,10 @@ test("DClient API logging in", async ({ page })=>
     
     // Playwright can execute Javascript expressions. 
     // Javascript to insert into local storage in the browser. 
-    // end of lesson 56. 
+
+    // start of Lesson 59
+
+    const orderId = createOrder(); 
 
     page.addInitScript(value => {
         window.localStorage.setItem('token', value); 
