@@ -13,23 +13,8 @@ test.beforeAll( async()=>
     // Login API: 
 
    const apiContext = await request.newContext();
-   const loginResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login", 
-    
-    {
-        data: loginPayload
-    
-    })
-
-    // OK code 200, 201
-
-    expect(loginResponse.ok()).toBeTruthy();
-    const loginResponseJson = await loginResponse.json(); 
-    token = loginResponseJson.token; 
-
-    // end of lesson 54. 
-
-    console.log(token); 
-
+   
+   
     // end of Lesson 55
 
     // start of Lesson 56
@@ -52,7 +37,6 @@ test.beforeAll( async()=>
 
 }); 
  
-// 7:05 out of 15:16
 
 /* test.beforeEach( ()=> 
 
@@ -60,13 +44,10 @@ test.beforeAll( async()=>
 
 }); */ 
 
-test("DClient API logging in", async ({ page })=>
+test("Place the order", async ({ page })=>
 {
     
-    // Playwright can execute Javascript expressions. 
-    // Javascript to insert into local storage in the browser. 
-
-    // start of Lesson 59
+    const apiUtils = new apiUtils(apiContext);
 
     const orderId = createOrder(); 
 
@@ -136,7 +117,7 @@ test("DClient API logging in", async ({ page })=>
     // await expect(page.locator(".user__name [type='text']").first()).toHaveText(email); 
     await page.locator(".action__submit").click(); 
     await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. "); 
-    // const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent(); 
+    // const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent(); THIS LINE IS NEEDED BUT IT CRASHES, DON'T KNOW WHY. DEBUG LATER. 
     console.log(orderId); 
 
 
