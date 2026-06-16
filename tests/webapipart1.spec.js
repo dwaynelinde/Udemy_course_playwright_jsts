@@ -1,5 +1,12 @@
 const {test, expect, request } = require('@playwright/test'); 
 
+// Importing the class from the utils file. 
+const {APIUtils} = require('./utils/APIutils'); 
+
+const loginPayLoad = {userEmail:"anshika@gmail.com",userPassword:"Iamking@000"};
+const orderPayLoad = {orders:[{country:"Cuba",productOrderedId:"67a8dde5c0d3e6622a297cc8"}]};
+
+// end of Lesson 59. 
 
 let token; 
 let orderId; 
@@ -7,20 +14,15 @@ let orderId;
 test.beforeAll( async()=> 
 
 {
-    // Login API: 
 
    const apiContext = await request.newContext();
+   const apiUtils = new APIUtils(apiContext, loginPayload); 
+   apiUtils.createOrder(); 
    
    
 
 }); 
  
-
-/* test.beforeEach( ()=> 
-
-{
-
-}); */ 
 
 test("Place the order", async ({ page })=>
 {

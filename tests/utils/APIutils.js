@@ -42,3 +42,6 @@ class APIUtils
     }
 
 }
+
+// This makes it a global variable. 
+module.exports = {APIUtils}; 
