@@ -1,8 +1,5 @@
 const {test, expect, request } = require('@playwright/test'); 
 
-const orderPayload = {
-    orders: [{country:"Cuba",productOrderId:"6960eae1c941646b7a8b3ed3"}]}; 
-const loginPayload = {userEmail:"anshika@gmail.com",userPassword:"Iamking@000"}; 
 
 let token; 
 let orderId; 
@@ -15,25 +12,6 @@ test.beforeAll( async()=>
    const apiContext = await request.newContext();
    
    
-    // end of Lesson 55
-
-    // start of Lesson 56
-
-    const orderResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order", 
-        {
-
-            data: orderPayload,
-            headers: {
-                        'Authorization':token,
-                        'Content-Type':'application/json'
-                    }, 
-
-                    // 5:20 out of 14:09 Lesson 57
-        })
-        
-        const orderResponseJson = await orderResponse.json();  
-        console.log(orderResponseJson); 
-        orderId = orderResponseJson.orders[0]; 
 
 }); 
  
@@ -47,9 +25,9 @@ test.beforeAll( async()=>
 test("Place the order", async ({ page })=>
 {
     
-    const apiUtils = new apiUtils(apiContext);
+    const apiUtils = new apiUtils(apiContext, loginPayload);
 
-    const orderId = createOrder(); 
+    const orderId = createOrder(orderPayload); 
 
     page.addInitScript(value => {
         window.localStorage.setItem('token', value); 
