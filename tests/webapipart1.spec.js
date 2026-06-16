@@ -1,10 +1,11 @@
 const {test, expect, request } = require('@playwright/test'); 
 
 const orderPayload = {
-    orders: [{country:"Mexico",productOrderId:"6960eae1c941646b7a8b3ed3"}]}; 
+    orders: [{country:"Cuba",productOrderId:"6960eae1c941646b7a8b3ed3"}]}; 
 const loginPayload = {userEmail:"anshika@gmail.com",userPassword:"Iamking@000"}; 
 
 let token; 
+let orderId; 
 
 test.beforeAll( async()=> 
 
@@ -33,7 +34,7 @@ test.beforeAll( async()=>
 
     // start of Lesson 56
 
-    apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order", 
+    const orderResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order", 
         {
 
             data: orderPayload,
@@ -43,21 +44,21 @@ test.beforeAll( async()=>
                     }, 
 
                     // 5:20 out of 14:09 Lesson 57
-        }
-    ); 
+        })
+        
+        const orderResponseJson = await orderResponse.json();  
+        console.log(orderResponseJson); 
+        orderId = orderResponseJson.orders[0]; 
 
 }); 
  
 // 7:05 out of 15:16
 
-test.beforeEach( ()=> 
+/* test.beforeEach( ()=> 
 
 {
 
-
-
-
-}); 
+}); */ 
 
 test("DClient API logging in", async ({ page })=>
 {
