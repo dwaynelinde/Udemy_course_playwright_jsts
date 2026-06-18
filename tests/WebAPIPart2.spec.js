@@ -1,4 +1,20 @@
+
+
 const {test, expect, request} = require('@playwright/test');
+
+
+test.beforeAll(async()=> 
+{
+
+    await page.goto("https://rahulshettyacademy.com/client"); 
+    await page.locator("#userEmail").fill("anshika@gmail.com");
+    await page.locator("#userPassword").fill("Iamking@000");
+    await page.locator("button[type='submit']").click();
+    await page.waitForLoadState('networkidle');
+
+})
+
+
 const {APiUtils} = require('./utils/APiUtils');
 const loginPayLoad = {userEmail:"anshika@gmail.com",userPassword:"Iamking@000"};
 const orderPayLoad = {orders:[{country:"Cuba",productOrderedId:"67a8dde5c0d3e6622a297cc8"}]};
