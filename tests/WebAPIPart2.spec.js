@@ -16,6 +16,10 @@ test.beforeAll(async({browser})=>
 
     await context.storageState({path:'state.json'});
 
+    // injecting state.jsom into the browser
+    const webContext = await browser.newContext({storageState:'state.json'});
+
+
 })
 
 
