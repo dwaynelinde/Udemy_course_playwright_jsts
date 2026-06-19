@@ -9,11 +9,24 @@ test("Browser Context Playwright test", async ({browser})=>
     const context = await browser.newContext();
     const page = await context.newPage(); 
 
+    // CSS blocking. Image blocking. Can speed up tests. 
+    // page.route("**/*.css.{jpg, png, gif, jpeg}", route => route.abort());     
+    page.route("**/*.{jpg, png, gif, jpeg}", route => route.abort());     
+
     // must initialize page first. 
     const userName = page.locator('#username'); 
     const password = page.locator("[type='password']"); 
     const signIn = page.locator("#signInBtn"); 
     const cardTitles = page.locator(".card-body a"); 
+
+    // network event listener. Listen for request calls. 
+    page.on("request", request => console.log(request.url())); 
+
+    // end of lesson 71!
+
+    // get response status code: 
+    page.on('response', response => console.log(response.status(), response.url()));
+
 
 
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
