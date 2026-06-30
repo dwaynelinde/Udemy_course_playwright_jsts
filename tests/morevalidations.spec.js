@@ -41,7 +41,7 @@ test("Popup validations", async({page}) =>
 })
 
 
-test.only("Screenshot and visual comparison", async({page}) => 
+test("Screenshot and visual comparison", async({page}) => 
 {
 
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/"); 
@@ -49,13 +49,21 @@ test.only("Screenshot and visual comparison", async({page}) =>
     
     // partial screenshot
     await page.locator('#displayed-text').screenshot({path: 'partialscreen.png'}); 
-    
     await page.locator('#hide-textbox').click(); 
 
     // full page screenshot
 
     await page.screenshot({path: 'screenshottest1.png'});  
-
     await expect(page.locator("#displayed-text")).toBeHidden(); 
-
 })
+
+    // visual testing and comparison of screenshots. 
+    // First run will fail, because no set screenshot. Test will create one. 
+
+test.only('visual comparison', async({page}) => 
+{
+
+    await page.goto('https://www.google.com/'); 
+    expect(await page.screenshot()).toMatchSnapshot('landinggoogle.png'); 
+    // end lesson 73
+})    
