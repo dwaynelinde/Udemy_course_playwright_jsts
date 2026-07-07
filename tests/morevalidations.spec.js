@@ -67,3 +67,5 @@ test.only('visual comparison', async({page}) =>
     expect(await page.screenshot()).toMatchSnapshot('landinggoogle.png'); 
     // end lesson 73
 })    
+
+
