@@ -15,19 +15,17 @@ class DashboardPage
 
     }
 
-    searchProduct(productName)
+    async searchProductAddCart(productName)
     {
 
 
-           
-           // await page.locator(".card-body b").first().waitFor();
            const titles = await this.productsText.allTextContents();
            console.log(titles); 
            const count = await this.products.count();
            for (let i = 0; i < count; ++i) {
               if (await this.products.nth(i).locator("b").textContent() === productName) {
                  //add to cart
-                 await this.products.nth(i).locator("text= Add To Cart").click();
+                 this.products.nth(i).locator("text= Add To Cart").click();
                  break;
               }
            }
@@ -35,9 +33,16 @@ class DashboardPage
     }
 
     
+    async navigateToCart() 
+    {
 
+        this.cart.click(); 
+
+    }    
 
        
 }
+
+module.exports = {DashboardPage}; 
 
 

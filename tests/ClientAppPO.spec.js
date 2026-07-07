@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const {LoginPage} = require('../pageobjects/LoginPage'); 
+const {DashboardPage} = require('../pageobjects/DashboardPage');
 
 
 // Use THIS file to build out objects, constructors, etc. 
@@ -13,16 +14,16 @@ test('Client App login', async ({ page }) => {
    const products = page.locator(".card-body");
 
     const loginPage = new LoginPage(page); 
-    loginPage.goTo(); 
-    loginPage.validLogin(username, password); 
+    await loginPage.goTo(); 
+    await loginPage.validLogin(username, password); 
+
+    // dashboardpage
+
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.searchProductAddCart(productName);
+    await dashboardPage.navigateToCart(); 
 
 
-
-
-
-
-   await page.locator("[routerlink*='cart']").click();
-   //await page.pause();
 
    await page.locator("div li").first().waitFor();
    const bool = await page.locator("h3:has-text('zara coat 3')").isVisible();
