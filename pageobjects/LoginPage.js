@@ -1,11 +1,37 @@
 class LoginPage {
 
-constructor() 
+constructor(page) 
 {
 
+    // Initializing variables in the contructor itself. 
+
+    this.page = page; 
+    this.signInbutton = page.locator("[value='Login']"); 
+    this.userName = page.locator("#userEmail"); 
+    this.password = page.locator("#userPassword"); 
 
 }
 
 
+async goTo()
+
+{
+
+    await this.page.goto("https://rahulshettyacademy.com/client");
 
 }
+
+async validLogin(username, password) 
+
+{
+
+    // Here, 'await' is needed. It's using the variables made in the constrructor above. 
+
+   await this.userName.type(username); 
+   await this.password.type(password); 
+   await this.signInbutton.click();
+
+}
+}
+
+module.exports = { LoginPage };

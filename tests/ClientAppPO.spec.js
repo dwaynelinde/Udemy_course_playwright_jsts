@@ -1,17 +1,24 @@
 const { test, expect } = require('@playwright/test');
+const {LoginPage} = require('../pageobjects/LoginPage'); 
+
 
 // Use THIS file to build out objects, constructors, etc. 
 
 
 test('Client App login', async ({ page }) => {
    //js file- Login js Page, Dashboard Page
-   const email = "anshika@gmail.com";
+   const username = "anshika@gmail.com";
+   const password = "Iamking@000";
    const productName = 'ZARA COAT 4';
    const products = page.locator(".card-body");
-   await page.goto("https://rahulshettyacademy.com/client");
-   await page.locator("#userEmail").fill(email);
-   await page.locator("#userPassword").fill("Iamking@000");
-   await page.locator("[value='Login']").click();
+
+    const loginPage = new LoginPage(page); 
+    loginPage.goTo(); 
+    loginPage.validLogin(username, password); 
+
+
+
+
    await page.waitForLoadState('networkidle');
    await page.locator(".card-body b").first().waitFor();
    const titles = await page.locator(".card-body b").allTextContents();
@@ -45,7 +52,7 @@ test('Client App login', async ({ page }) => {
       }
    }
 
-   expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
+   expect(page.locator(".user__name [type='text']").first()).toHaveText(username);
    await page.locator(".action__submit").click();
    await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
    const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
