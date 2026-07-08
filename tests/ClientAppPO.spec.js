@@ -1,27 +1,30 @@
 const { test, expect } = require('@playwright/test');
-const {LoginPage} = require('../pageobjects/LoginPage'); 
-const {DashboardPage} = require('../pageobjects/DashboardPage');
+
+const {POmanager} = require('../pageobjects/POmanager'); 
 
 
 // Use THIS file to build out objects, constructors, etc. 
 
 
 test('Client App login', async ({ page }) => {
+
+    const poManager = new POmanager(page); 
+
    //js file- Login js Page, Dashboard Page
    const username = "anshika@gmail.com";
    const password = "Iamking@000";
    const productName = 'ZARA COAT 4';
    const products = page.locator(".card-body");
 
-    const loginPage = new LoginPage(page); 
+    const loginPage = poManager.getLoginPage(); 
     await loginPage.goTo(); 
     await loginPage.validLogin(username, password); 
 
     // dashboardpage
 
-    const dashboardPage = new DashboardPage(page);
+    const dashboardPage = poManager.getDashboardPage(); 
     await dashboardPage.searchProductAddCart(productName);
-    await dashboardPage.navigateToCart(); 
+    dashboardPage.navigateToCart(); 
 
 
 
