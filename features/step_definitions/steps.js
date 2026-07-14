@@ -2,7 +2,7 @@
 const { When, Then, Given } = require('@cucumber/cucumber')
 // const { Greeter } = require('../../src')
 const {POManager} = require('../../pageobjects/POManager'); 
-const {test,expect, playwright} = require('@playwright/test');
+const {test, expect, playwright} = require('@playwright/test');
 
 
 Given('a login to Ecommerce application with {string} and {string}', async function (string, string2) 
@@ -11,9 +11,9 @@ Given('a login to Ecommerce application with {string} and {string}', async funct
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    const poManager = new POmanager(page); 
+    this.poManager = new POmanager(page); 
     const products = page.locator(".card-body"); 
-    const loginPage = poManager.getLoginPage(); 
+    const loginPage = this.poManager.getLoginPage(); 
     await loginPage.goto(); 
     await loginPage.validLogin(data.username, data.password); 
   
@@ -22,21 +22,21 @@ Given('a login to Ecommerce application with {string} and {string}', async funct
 
 When('I add {string} to Cart', async function (string) 
 {
-    const dashboardPage = poManager.getDashboardPage(); 
-    await dashboardPage.searchProductAddCart(data.productName); 
-    await dashboardPage.navigateToCart();  
+    this.dashboardPage = this.poManager.getDashboardPage(); 
+    await this.dashboardPage.searchProductAddCart(data.productName); 
+    await this.dashboardPage.navigateToCart();  
 });
 
 Then('Verify {string} is displayed in the Cart', async function (string) 
 {
-    const cartPage = poManager.getCartPage(); 
+    const cartPage = this.poManager.getCartPage(); 
     await cartPage.VerifyProductDisplayed(data.productName); 
     await cartPage.Checkout(); 
 });
 
 When('Enter valid details and place the order', async function () 
 {
-    const ordersReviewPage = poManager.getOrdersReviewPage(); 
+    const ordersReviewPage = this.poManager.getOrdersReviewPage(); 
     await ordersReviewPage.searchCountryAndSelect("ind","India"); 
     const orderId = await ordersReviewPage.SubmitAndGetOrderId(); 
     console.log(orderId); 
@@ -45,9 +45,9 @@ When('Enter valid details and place the order', async function ()
 
 Then('Verify order is present in the Order History', async function () 
 {
-    await dashboardPage.navigateToOrders(); 
-    const ordersHistoryPage = poManager.getOrdersHistoryPage(); 
-    await orderHistoryPage.searchOrderAndSelect(orderId); 
+    await this.dashboardPage.navigateToOrders(); 
+    const ordersHistoryPage = this.poManager.getOrdersHistoryPage(); 
+    await ordersHistoryPage.searchOrderAndSelect(orderId); 
     expect(orderId.includes(await ordersHistoryPage.getOrderId())).toBeTruthy(); 
 
 
