@@ -1,36 +1,38 @@
 // const assert = require('assert')
-const { When, Then, Given } = require('@cucumber/cucumber')
+const { When, Then, Given } = require('@cucumber/cucumber'); 
 // const { Greeter } = require('../../src')
-const {POManager} = require('../../pageobjects/POManager'); 
-const {test, expect, playwright} = require('@playwright/test');
+const {POmanager} = require('../../pageobjects/POmanager'); 
+const {expect} = require('@playwright/test');
+const playwright = require('@playwright/test');
 
-
-Given('a login to Ecommerce application with {string} and {string}', async function (string, string2) 
+Given('a login to Ecommerce application with {string} and {string}', {timeout : 100*1000}, async function (username, password) 
 {
-    const browser = await playwright.chromium.launch();
+    const browser = await playwright.chromium.launch({
+        headless: false
+    });
     const context = await browser.newContext();
     const page = await context.newPage();
 
     this.poManager = new POmanager(page); 
     const products = page.locator(".card-body"); 
     const loginPage = this.poManager.getLoginPage(); 
-    await loginPage.goto(); 
-    await loginPage.validLogin(data.username, data.password); 
+    await loginPage.goTo(); 
+    await loginPage.validLogin(username, password); 
   
 });
 
 
-When('I add {string} to Cart', async function (string) 
+When('I add {string} to Cart', async function (productName) 
 {
     this.dashboardPage = this.poManager.getDashboardPage(); 
-    await this.dashboardPage.searchProductAddCart(data.productName); 
+    await this.dashboardPage.searchProductAddCart(productName); 
     await this.dashboardPage.navigateToCart();  
 });
 
-Then('Verify {string} is displayed in the Cart', async function (string) 
+Then('Verify {string} is displayed in the Cart', async function (productName) 
 {
     const cartPage = this.poManager.getCartPage(); 
-    await cartPage.VerifyProductDisplayed(data.productName); 
+    await cartPage.VerifyProductDisplayed(productName); 
     await cartPage.Checkout(); 
 });
 
